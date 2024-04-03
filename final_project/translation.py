@@ -32,7 +32,11 @@ def translate_document(
     documents_translated_dict: dict[str, list[str]],
 ):
     gt = GoogleTranslator(source=lang, target="en")
-    translated = gt.translate(text=document_text)
+    try:
+        translated = gt.translate(text=document_text)
+    except Exception:
+        print("API Failed to trainglate document, using original text.")
+        translated = document_text
 
     documents_translated_dict[lang][index] = translated
 

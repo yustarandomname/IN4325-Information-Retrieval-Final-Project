@@ -51,12 +51,7 @@ def retrieve_documents(
     return document_data
 
 
-index = 0
-
-
 def query_improvement(q0, NUM_RESULTS=10, TERM_AMOUNT=10):
-    index + 1
-    print(q0)
 
     env = dotenv_values("../.env")  # replace ".env.example" with .env file path
 
@@ -88,4 +83,7 @@ def query_improvement(q0, NUM_RESULTS=10, TERM_AMOUNT=10):
 
     domain_specific_terms = get_most_common_terms(documents_translated, TERM_AMOUNT)
     # print(domain_specific_terms)
-    return q0 + " " + " ".join(domain_specific_terms)
+    newQuery = q0 + " " + " ".join(domain_specific_terms)
+
+    print(q0, "->", domain_specific_terms)
+    return newQuery

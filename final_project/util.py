@@ -8,7 +8,7 @@ import pyterrier as pt
 if not pt.started():
     pt.init()
 
-DATASET = pt.datasets.get_dataset("irds:antique/test/non-offensive")
+DATASET = pt.datasets.get_dataset("irds:beir/dbpedia-entity/dev")
 IDX_PATH = Path("index").absolute()
 if not (IDX_PATH / "data.properties").is_file():
     pt.index.IterDictIndexer(
@@ -48,7 +48,7 @@ def evaluate(df: pd.DataFrame, rewrite_func: Callable[[str], str] = None) -> flo
 
 
 def evaluate_all(rewrite_func: Callable[[str], str] = None) -> float:
-    return evaluate(DATASET.get_topics().head(50), rewrite_func)
+    return evaluate(DATASET.get_topics().head(25), rewrite_func)
 
 
 def evaluate_multi_thread(

@@ -9,4 +9,5 @@ intro-pyterrier/ffindex_fiqa_tct.h5
 .venv
 .env
 **/index/*
+**/_index/*
 **/indices/*
