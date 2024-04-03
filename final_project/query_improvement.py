@@ -51,8 +51,14 @@ def retrieve_documents(
     return document_data
 
 
-def query_improvement(q0, NUM_RESULTS=10):
-    env = dotenv_values(".env")  # replace ".env.example" with .env file path
+index = 0
+
+
+def query_improvement(q0, NUM_RESULTS=10, TERM_AMOUNT=10):
+    index + 1
+    print(q0)
+
+    env = dotenv_values("../.env")  # replace ".env.example" with .env file path
 
     if env["LANGUAGE_DETECT_API_KEY"] == "YOUR API KEY":
         raise Exception(
@@ -80,5 +86,6 @@ def query_improvement(q0, NUM_RESULTS=10):
     documents_translated = document_translation(document_data)
     # print(documents_translated)
 
-    domain_specific_terms = get_most_common_terms(documents_translated)
-    print(domain_specific_terms)
+    domain_specific_terms = get_most_common_terms(documents_translated, TERM_AMOUNT)
+    # print(domain_specific_terms)
+    return q0 + " " + " ".join(domain_specific_terms)

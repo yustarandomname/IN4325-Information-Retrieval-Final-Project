@@ -100,5 +100,5 @@ def get_most_common_terms(documents_translated: list[str], amount=100):
     # Based on tfidf, extract the 5 'most domain-specific' terms
     domain_specific_terms = [item[0] for item in tfidf_per_term.most_common(amount)]
 
-    print(domain_specific_terms)
+    # print(domain_specific_terms)
     return domain_specific_terms

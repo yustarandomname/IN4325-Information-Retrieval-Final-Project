@@ -40,7 +40,7 @@ def index(dataset: str, index_name: str, indeces: dict, lang: str, fields=["text
     indeces[lang] = index_ref
 
 
-def get_datasets_and_indeces():
+def get_datasets_and_indeces(verbose=False):
     datasetNames: dict[str, str] = dict(
         {
             "fr": "wikir/fr14k",
@@ -59,15 +59,19 @@ def get_datasets_and_indeces():
         datasets[lang] = dataset
 
         if os.path.exists("./indices/" + datasetFolder + "/data.properties"):
-            print("Index", datasetFolder, "already exists")
+            if verbose:
+                print("Index", datasetFolder, "already exists")
+
             index_ref = find_index(datasetFolder)
             indeces[lang] = index_ref
         else:
-            print(
-                "Creating index",
-                datasetFolder,
-                " (takes around 1-3 minutes per dataset)",
-            )
+            if verbose:
+                print(
+                    "Creating index",
+                    datasetFolder,
+                    " (takes around 1-3 minutes per dataset)",
+                )
+
             thread = threading.Thread(
                 target=index, args=(dataset, datasetFolder, indeces, lang)
             )
