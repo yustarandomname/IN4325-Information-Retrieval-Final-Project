@@ -48,7 +48,7 @@ def evaluate(df: pd.DataFrame, rewrite_func: Callable[[str], str] = None) -> flo
 
 
 def evaluate_all(rewrite_func: Callable[[str], str] = None) -> float:
-    return evaluate(DATASET.get_topics(), rewrite_func)
+    return evaluate(DATASET.get_topics().head(50), rewrite_func)
 
 
 def evaluate_multi_thread(
